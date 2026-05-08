@@ -49,9 +49,8 @@ CUH Bioinformatics — Uranus Pipeline
 ## The problem
 
 - Haem-onc panel sequencing: 46 samples per run
-- Samples adjacent on the plate can cross-contaminate
 - Contamination introduces variants from one patient into another
-- This can lead to **false somatic variant calls** in clinical reporting
+- This can lead to **false somatic variant calls** 
 
 ---
 
@@ -125,35 +124,6 @@ Flagging is based on the **non-unity peak** only
 | Depth | DP ≥ 99 | Reliable VAF estimation |
 | VAF | AF ≥ 0.03 | Minimum reliable allele fraction |
 | gnomAD | AF < 0.40 | Remove hom/het artefact (next slide) |
-
----
-
-## Why NOT the clinical Uranus filters?
-
-Tested against 40 **known contamination markers**:
-
-| Clinical filter | Markers removed | Impact |
-|---|---|---|
-| gnomAD ≥ 0.002 | **35/40 (87.5%)** | Devastating |
-| Synonymous exclusion | **19/40 (47.5%)** | Very harmful |
-| Prev_Count_AC > 853 | **6/40 (15%)** | Harmful |
-
-> Contamination IS germline variants — the clinical filters are designed to remove exactly those.
-
----
-
-## Why these filters are wrong for contamination
-
-Clinical filters exist to identify **somatic mutations** for reporting.
-
-Contamination detection is the **opposite task**: we want to find the source patient's **germline** variants appearing in the recipient.
-
-These germline variants:
-- Have population-level gnomAD AFs (0.01–0.40)
-- Include synonymous and intronic variants
-- May be recurrent in the haem-onc cohort
-
-All of these properties make clinical filters **remove** them.
 
 -----
 
@@ -435,10 +405,9 @@ Outputs: summary.tsv, matrix.tsv, flagged_pairs/*.tsv, plots/*.png
 
 ## Key lessons learned
 
-1. **Clinical filters destroy the contamination signal** — contamination detection requires the opposite of somatic variant filtering
-2. **The hom/het artefact at gnomAD > 0.40** produces exact mimics of 50% contamination — must be filtered
-3. **Linkage disequilibrium** creates false clusters of 4–5 — threshold must be above this
-4. **Transitive contamination** from heavily-contaminated samples creates many false flags — pattern recognition needed
+1. **The hom/het artefact at gnomAD > 0.40** produces exact mimics of 50% contamination — must be filtered
+2. **Linkage disequilibrium** creates false clusters of 4–5 — threshold must be above this
+3. **Transitive contamination** from heavily-contaminated samples creates many false flags — pattern recognition needed
 
 ---
 
