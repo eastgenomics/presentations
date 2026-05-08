@@ -58,7 +58,7 @@ CUH Bioinformatics — Uranus Pipeline
 
 Source patient's **germline heterozygous SNPs** (~50% VAF) appear in the recipient at a diluted fraction:
 
-$$\text{VAF}_{\text{recipient}} \approx \text{VAF}_{\text{source}} \times \text{contamination fraction}$$
+`VAF_recipient ≈ VAF_source × contamination_fraction`
 
 At 50% contamination: source variants at 50% appear at ~25% in recipient
 
@@ -141,7 +141,7 @@ At gnomAD AF > 0.40:
 
 When paired:
 
-$$\frac{AF_{\text{het}}}{AF_{\text{hom}}} = \frac{0.5}{1.0} = 0.5 \quad (\text{log2} = -1.0)$$
+`AF_het / AF_hom = 0.5 / 1.0 = 0.5  (log2 = -1.0)`
 
 This **exactly mimics 50% contamination**!
 
@@ -229,7 +229,7 @@ The threshold absorbs linkage artefacts naturally.
 
 For germline het variant (AF ≈ 0.5) at depth D:
 
-$$SE(\log_2 ratio) \approx \frac{\sqrt{2} \cdot \sqrt{0.25/D}}{0.5 \cdot \ln 2}$$
+`SE(log2_ratio) ≈ sqrt(2) × sqrt(0.25/D) / (0.5 × ln2)`
 
 | Depth | SE(log2) | 3σ range |
 |---|---|---|
